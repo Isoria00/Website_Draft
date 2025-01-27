@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+  </head>
+  <body>
+    <div class="nav_banner">
+      <div id="collision-box"></div>
+      <div id="lottie-container"></div>
+
+      <h1>Welcome, {{username}}!</h1>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Scheduled Dates</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Date Ideas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Boredom Cureness</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Wishlist</a>
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <h1>How It Works!</h1>
+      <div>
+        <ul>
+          <li>Scheduled Dates</li>
+          <li>Add</li>
+        </ul>
+      </div>
+      <script>
+        var animation = lottie.loadAnimation({
+          container: document.getElementById("lottie-container"), // Target container
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "{{ url_for('static', filename='animations/cat.json') }}",
+        });
+
+        // Detect when the cat reaches a <li> and apply the shake effect
+        const cat = document.getElementById("lottie-container");
+        const collisionBox = document.getElementById("collision-box"); // Collision box inside lottie container
+        const links = document.querySelectorAll(".nav-item");
+
+        function checkCatPosition() {
+          const catPos = cat.getBoundingClientRect();
+          const boxPos = collisionBox.getBoundingClientRect(); // Get position of collision box
+
+          links.forEach((link) => {
+            const linkPos = link.getBoundingClientRect();
+
+            // Check if the cat's collision box is close enough to the <li> to trigger the shake effect
+            if (
+              boxPos.left + boxPos.width > linkPos.left &&
+              boxPos.left < linkPos.left + linkPos.width &&
+              boxPos.top < linkPos.top + linkPos.height &&
+              boxPos.bottom > linkPos.top
+            ) {
+              // Trigger the shake animation on the <li> item
+              link.classList.add("shake");
+
+              // Remove the shake class after the animation ends to allow it to trigger again
+              setTimeout(() => {
+                link.classList.remove("shake");
+              }, 500); // Shake duration (same as animation time)
+            }
+          });
+        }
+
+        // Call the function every 10ms to continuously check the cat's position
+        setInterval(checkCatPosition, 10);
+      </script>
+    </main>
+  </body>
+</html>

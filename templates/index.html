@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
+      rel="stylesheet"
+    />
+    <title>Website</title>
+    <!-- Script for Cat that Pops from the top of the form-->
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+  </head>
+  <body>
+    <!-- Updated form with POST method -->
+    <form class="form" action="/login" method="POST" autocomplete="off">
+      <div class="title">
+        <!--Image of the Main Login Form-->
+        <img
+          src="{{ url_for('static', filename='images/Login.png') }}"
+          alt="Login"
+          id="Login_img"
+        />
+      </div>
+
+      <div class="login_input">
+        <div class="username">
+          <label for="username">Username:</label>
+          <input type="text" name="username" required />
+        </div>
+
+        <div class="password">
+          <label for="psswrd">Password:</label>
+          <input type="password" name="psswrd" required />
+        </div>
+
+        <input type="submit" value="Login" id="login_button" />
+      </div>
+    </form>
+    <!-- Cat Background for Website -->
+    <img
+      src="{{ url_for('static', filename='images/catbanner.png') }}"
+      alt="CatSideBanners"
+      class="cat_side_banner"
+    />
+    <!-- Cat Animation with inline CSS style -->
+    <dotlottie-player
+      id="catAnimation"
+      src="https://lottie.host/f445f73f-cfa7-40f4-ac11-b0f080df32bf/IdDbH7l9wO.lottie"
+      background="transparent"
+      speed=".1"
+      style="
+        width: 225px;
+        height: 225px;
+        position: absolute;
+        z-index: 5;
+        top: -17%;
+        left: 50%;
+        transform: translateX(-50%);
+      "
+      loop
+      autoplay
+    >
+    </dotlottie-player>
+  </body>
+</html>

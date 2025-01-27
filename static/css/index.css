@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  background-color: #fc6fb1;
+}
+
+.title h1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  font-family: "Chewy", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ee4c52;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0.1, 0.1, 0.1, 0.1);
+  padding-bottom: 2rem;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  z-index: 6;
+}
+
+.login_input {
+  display: flex;
+  flex-direction: center;
+  flex-wrap: wrap;
+}
+
+.login_input label {
+  display: flex;
+}
+
+.username {
+  margin: 20px;
+}
+
+.password {
+  margin: 20px;
+}
+
+.login_input input {
+  height: 3rem;
+  border-radius: 5px;
+  background-color: #fc6fb1;
+  font-size: 2rem;
+  font-family: "Chewy", serif;
+  font-weight: 400;
+  font-style: normal;
+  border-color: #ee4c52;
+}
+
+.login_input label {
+  font-size: 3rem;
+  font-family: "Chewy", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#login_button {
+  font-family: "Chewy", serif;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 10px;
+  padding: auto;
+  margin-top: 10%;
+  font-size: 20px;
+  height: 4rem;
+  width: 7rem;
+}
+
+img {
+  height: 31.11rem;
+  margin: 0px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.cat_side_banner {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  border-radius: 0px;
+}
