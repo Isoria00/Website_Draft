@@ -46,52 +46,56 @@
 
     <main>
       <h1>How It Works!</h1>
-      <div>
+      <div class="main-li">
         <ul>
-          <li>Scheduled Dates</li>
-          <li>Add</li>
+          <li>
+            <h1>Dates</h1>
+            <div class="description">This is where you schedule Dates</div>
+          </li>
+
+          <li>Date Ideas</li>
+
+          <li>Boredom Cureness</li>
+
+          <li>Wishlist</li>
         </ul>
       </div>
+
       <script>
         var animation = lottie.loadAnimation({
-          container: document.getElementById("lottie-container"), // Target container
+          container: document.getElementById("lottie-container"),
           renderer: "svg",
           loop: true,
           autoplay: true,
           path: "{{ url_for('static', filename='animations/cat.json') }}",
         });
 
-        // Detect when the cat reaches a <li> and apply the shake effect
         const cat = document.getElementById("lottie-container");
-        const collisionBox = document.getElementById("collision-box"); // Collision box inside lottie container
+        const collisionBox = document.getElementById("collision-box");
         const links = document.querySelectorAll(".nav-item");
 
         function checkCatPosition() {
           const catPos = cat.getBoundingClientRect();
-          const boxPos = collisionBox.getBoundingClientRect(); // Get position of collision box
+          const boxPos = collisionBox.getBoundingClientRect();
 
           links.forEach((link) => {
             const linkPos = link.getBoundingClientRect();
 
-            // Check if the cat's collision box is close enough to the <li> to trigger the shake effect
             if (
               boxPos.left + boxPos.width > linkPos.left &&
               boxPos.left < linkPos.left + linkPos.width &&
               boxPos.top < linkPos.top + linkPos.height &&
               boxPos.bottom > linkPos.top
             ) {
-              // Trigger the shake animation on the <li> item
               link.classList.add("shake");
 
-              // Remove the shake class after the animation ends to allow it to trigger again
               setTimeout(() => {
                 link.classList.remove("shake");
-              }, 500); // Shake duration (same as animation time)
+              }, 500);
             }
           });
         }
 
-        // Call the function every 10ms to continuously check the cat's position
         setInterval(checkCatPosition, 10);
       </script>
     </main>

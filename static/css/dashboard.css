@@ -78,6 +78,45 @@ main h1 {
   align-items: center;
 }
 
+.main-li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  z-index: 5;
+}
+
+.main-li ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  background-color: blue;
+  border-radius: 20px;
+  padding: 20px;
+  justify-items: center;
+  align-items: center;
+  margin: auto;
+}
+
+.main-li li {
+  font-size: 25px;
+  border: 2px solid black;
+  background-color: #ff6d6a;
+  border-radius: 20px;
+  margin: 0;
+  font-family: "Chewy", serif;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 150px;
+  text-align: center;
+  height: fit-content;
+  width: fit-content;
+  z-index: 1;
+}
+
 @keyframes moveCat {
   0% {
     left: 0;
