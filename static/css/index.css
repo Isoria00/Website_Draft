@@ -1,3 +1,7 @@
+* {
+  border: 2px red solid;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -78,9 +82,21 @@ body {
   border-radius: 10px;
   padding: auto;
   margin-top: 10%;
+  margin-left: 5px;
   font-size: 20px;
   height: 4rem;
   width: 7rem;
+  opacity: 0%;
+  transition: all 2s;
+  transform: translateX(100%);
+}
+#login_button:hover {
+  cursor: pointer;
+}
+
+#login_button.active {
+  opacity: 100%;
+  transform: translateX(0);
 }
 
 img {
@@ -101,4 +117,15 @@ img {
   left: 0;
   z-index: 5;
   border-radius: 0px;
+}
+.error-message {
+  font-size: 1rem;
+  font-family: "Chewy", serif;
+  font-weight: 300;
+  font-style: normal;
+  color: red;
+  text-decoration: underline;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Initially hidden */
+  transition: opacity 1s, visibility 1s; /* Smooth transition */
 }

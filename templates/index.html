@@ -45,6 +45,10 @@
 
         <input type="submit" value="Login" id="login_button" />
       </div>
+      <!-- Error Message Display -->
+      {% if error %}
+      <div class="error-message">{{ error }}</div>
+      {% endif %}
     </form>
     <!-- Cat Background for Website -->
     <img
@@ -71,5 +75,6 @@
       autoplay
     >
     </dotlottie-player>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   </body>
 </html>

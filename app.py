@@ -17,6 +17,7 @@ def home():
 def login():
     username = request.form.get('username')
     password = request.form.get('psswrd')
+    error_message = "Incorrect Username Or Password!" 
     
     for user in users:
         
@@ -26,11 +27,11 @@ def login():
             return redirect(url_for('dashboard'))
 
             
-            
+         
             
     # Redirect User to the Home Page
 
-    return redirect(url_for('home'))
+    return render_template('index.html',error = error_message)
 
 
 
