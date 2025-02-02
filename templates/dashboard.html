@@ -30,16 +30,20 @@
       <h1>Welcome, {{username}}!</h1>
       <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link" href="#">Scheduled Dates</a>
+          <a class="nav-link" href="{{ url_for('schedule') }}"
+            >Scheduled Dates</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Date Ideas</a>
+          <a class="nav-link" href="{{ url_for('dateideas') }}">Date Ideas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Boredom Cureness</a>
+          <a class="nav-link" href="{{ url_for('boredom') }}"
+            >Boredom Cureness</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Wishlist</a>
+          <a class="nav-link" href="{{ url_for('wishlist') }}">Wishlist</a>
         </li>
       </ul>
     </div>

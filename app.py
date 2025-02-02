@@ -9,6 +9,11 @@ users = [
     'password': 'theg'}
      
 ]
+
+events = [
+    {'title': 'Meet and Greet', 'start': '2025-02-15T10:00:00', 'end': '2025-02-15T11:00:00'},
+    {'title': 'Workshop', 'start': '2025-02-16T14:00:00', 'end': '2025-02-16T16:00:00'}
+]
 @app.route('/')
 def home():
     error_message = None
@@ -52,6 +57,38 @@ def dashboard():
     username = session['username']
 
     return render_template('dashboard.html', username=username)  
+
+
+# START OF CALENDAR FUNCTIONS
+
+@app.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
+
+@app.route('/api/get-events')
+def get_events():
+    return jsonify(events)
+
+
+@app.route('/api/save-event', methods=['POST'])
+def save_event():
+    new_event = request.get_json()
+    events.append(new_event)
+    return jsonify(new_event), 201
+
+# END OF CALENDAR FUNCTIONS
+
+@app.route('/dateideas')
+def dateideas():
+    return render_template('dateideas.html')
+
+@app.route('/boredom')
+def boredom():
+    return render_template('boredom.html')
+
+@app.route('/wishlist')
+def wishlist():
+    return render_template('wishlist.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
