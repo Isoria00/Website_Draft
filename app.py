@@ -11,27 +11,34 @@ users = [
 ]
 @app.route('/')
 def home():
-    return render_template('index.html')
+    error_message = None
+    return render_template('index.html', error = error_message)
 
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('psswrd')
-    error_message = "Incorrect Username Or Password!" 
     
+
+    # Check if user in list
     for user in users:
         
         if (username == user['username']) and (password == user['password']):
             session['username'] = username.title()
             
             return redirect(url_for('dashboard'))
+       
 
-            
-         
-            
+
+    error_message = "Incorrect Username or Password"
+
+    
     # Redirect User to the Home Page
 
     return render_template('index.html',error = error_message)
+   
+            
+    
 
 
 

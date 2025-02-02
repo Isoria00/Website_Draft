@@ -47,15 +47,29 @@
       </div>
       <!-- Error Message Display -->
       {% if error %}
-      <div class="error-message">{{ error }}</div>
+      <div id="error-message" class="error-message">{{ error }}</div>
       {% endif %}
+
+      <script>
+        // This function will hide the error message after a specified delay
+        window.onload = function () {
+          // Check if the error message is visible
+          const errorMessage = document.getElementById("error-message");
+          if (errorMessage) {
+            // Set a delay of 3 seconds (3000 milliseconds)
+            setTimeout(function () {
+              errorMessage.style.display = "none"; // Hide the error message after the delay
+            }, 3000); // You can adjust this value (3000 ms = 3 seconds)
+          }
+        };
+      </script>
     </form>
     <!-- Cat Background for Website -->
-    <img
+    <!--<img
       src="{{ url_for('static', filename='images/catbanner.png') }}"
       alt="CatSideBanners"
       class="cat_side_banner"
-    />
+    />>
     <!-- Cat Animation with inline CSS style -->
     <dotlottie-player
       id="catAnimation"
