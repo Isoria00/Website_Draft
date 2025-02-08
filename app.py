@@ -10,10 +10,14 @@ users = [
      
 ]
 
-events = [
-    {'title': 'Meet and Greet', 'start': '2025-02-15T10:00:00', 'end': '2025-02-15T11:00:00'},
-    {'title': 'Workshop', 'start': '2025-02-16T14:00:00', 'end': '2025-02-16T16:00:00'}
-]
+dates = {
+        "2/7/2025": "Golfing",
+        "2/5/2025": "Soccer",
+        "2/3/2025": "Skiing",
+        "2/27/2025": "Fishing",
+    }
+
+
 @app.route('/')
 def home():
     error_message = None
@@ -59,24 +63,24 @@ def dashboard():
     return render_template('dashboard.html', username=username)  
 
 
-# START OF CALENDAR FUNCTIONS
 
+# Schedule Functions
 @app.route('/schedule')
 def schedule():
-    return render_template('schedule.html')
+    if request.method == "POST":
+        date = request.form.get("date")
+        task = request.form.get("task")
+    
+        if date and task:
+            if date not in dates:
+                dates[date] = []
+            
+            dates[date].append(task)
 
-@app.route('/api/get-events')
-def get_events():
-    return jsonify(events)
+    
+    
+    return render_template('schedule.html', dates = dates)
 
-
-@app.route('/api/save-event', methods=['POST'])
-def save_event():
-    new_event = request.get_json()
-    events.append(new_event)
-    return jsonify(new_event), 201
-
-# END OF CALENDAR FUNCTIONS
 
 @app.route('/dateideas')
 def dateideas():

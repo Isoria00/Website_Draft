@@ -3,38 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Schedule</title>
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css"
-      rel="stylesheet"
-    />
-
-    <style>
-      #calendar {
-        max-width: 90%;
-        margin: 0 auto;
-      }
-    </style>
+    <title>Document</title>
   </head>
   <body>
     <h1>Schedule</h1>
+    <form action="POST">
+      <label for="event-date">Choose a date:</label>
+      <input type="date" id="event-date" name="date" required />
 
-    <div id="calendar"></div>
+      <label for="event">Enter Event:</label>
+      <input type="text" id="event" name="task" required />
 
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: "dayGridMonth",
-          events: '{{ url_for("get_events") }}',
-          eventClick: function (info) {
-            alert("Event: " + info.event.title);
-          },
-        });
-        calendar.render();
-      });
-    </script>
+      <button type="submit">Set Date</button>
+    </form>
+    <ul>
+      {%for key, value in dates.items() %}
+      <li><strong>{{ key }}</strong>: {{ value }}</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
