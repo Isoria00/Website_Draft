@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 
 app = Flask(__name__)
+
 app.secret_key = '923643589235892asdwsregafkjs!&'  
 users = [
     {'username': 'kittygurl',
@@ -43,11 +44,15 @@ def login():
 
     
     # Redirect User to the Home Page
+<<<<<<< Updated upstream
 
     return render_template('index.html',error = error_message)
    
             
     
+=======
+    return render_template('index.html')
+>>>>>>> Stashed changes
 
 
 
