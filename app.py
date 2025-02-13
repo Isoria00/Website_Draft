@@ -45,11 +45,15 @@ def login():
     
     # Redirect User to the Home Page
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     return render_template('index.html',error = error_message)
    
             
     
+=======
+    return render_template('index.html')
+>>>>>>> Stashed changes
 =======
     return render_template('index.html')
 >>>>>>> Stashed changes
