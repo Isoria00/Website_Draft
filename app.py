@@ -1,4 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+import json
+import os
+import random
+from dateideas import *
 
 app = Flask(__name__)
 
@@ -11,12 +15,13 @@ users = [
      
 ]
 
-dates = {
-        "2/7/2025": "Golfing",
-        "2/5/2025": "Soccer",
-        "2/3/2025": "Skiing",
-        "2/27/2025": "Fishing",
-    }
+wishlist = [
+    
+]
+
+images_folder = os.path.join(app.static_folder, 'images', 'CatPhotos')
+
+images = [f'images/CatPhotos/{filename}' for filename in os.listdir(images_folder) if filename.endswith(('jpg'))]
 
 
 @app.route('/')
@@ -30,7 +35,7 @@ def login():
     password = request.form.get('psswrd')
     
 
-    # Check if user in list
+   
     for user in users:
         
         if (username == user['username']) and (password == user['password']):
@@ -43,22 +48,10 @@ def login():
     error_message = "Incorrect Username or Password"
 
     
-    # Redirect User to the Home Page
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+    
 
     return render_template('index.html',error = error_message)
    
-            
-    
-=======
-    return render_template('index.html')
->>>>>>> Stashed changes
-=======
-    return render_template('index.html')
->>>>>>> Stashed changes
-
-
 
 
 @app.route('/dashboard')
@@ -73,35 +66,106 @@ def dashboard():
 
 
 
-# Schedule Functions
-@app.route('/schedule')
-def schedule():
-    if request.method == "POST":
-        date = request.form.get("date")
-        task = request.form.get("task")
-    
-        if date and task:
-            if date not in dates:
-                dates[date] = []
-            
-            dates[date].append(task)
 
-    
-    
-    return render_template('schedule.html', dates = dates)
-
-
-@app.route('/dateideas')
+@app.route('/dateideas', methods=['GET', 'POST'])
 def dateideas():
-    return render_template('dateideas.html')
+    return render_template('dateideas.html', idea=None)
+
+
+@app.route('/generate-date-idea', methods=['POST'])
+def generate_date_idea():
+    selected_index = int(request.form["options"]) # Get index from dropdown
+    idea = get_random_idea(selected_index) # Generate random idea
+    return render_template('dateideas.html', idea=idea)
+
+def get_random_idea(index):
+    return random.choice(list_of_categories[index])
+
 
 @app.route('/boredom')
 def boredom():
-    return render_template('boredom.html')
 
-@app.route('/wishlist')
-def wishlist():
-    return render_template('wishlist.html')
+    images_folder = os.path.join(app.static_folder, 'images', 'CatPhotos')
+
+    images = [f'images/CatPhotos/{filename}' for filename in os.listdir(images_folder) if filename.endswith(('jpg', 'png', 'jpeg'))]
+
+    return render_template('boredom.html', images=images)
+
+
+
+@app.route('/get_image', methods=['GET'])
+def get_image():
+  
+  
+    images_folder = os.path.join(app.static_folder, 'images', 'CatPhotos')
+
+    
+    images = [f'images/CatPhotos/{filename}' for filename in os.listdir(images_folder) if filename.endswith(('jpg', 'png', 'jpeg'))]
+
+    
+    selected_image = random.choice(images)
+
+   
+    return jsonify({'image_url': selected_image})
+
+
+
+
+
+
+@app.route('/wishlist', methods = ['GET'])
+def wishlist_page():
+    global wishlist
+
+    try:
+        with open('wishlist.json', 'r') as file:
+            wishlist = json.load(file)
+    except FileNotFoundError:
+        wishlist = []
+
+
+    return render_template('wishlist.html', wishlist = wishlist)
+
+@app.route('/wishlist/add', methods=["POST"])
+def add_wishlist_item():
+    item = request.form.get('item')
+    link = request.form.get('link')
+
+    if item and link:
+        new_item = {'item': item, 'link': link}
+        wishlist.append(new_item)
+    
+        with open('wishlist.json', 'w') as file:
+            json.dump(wishlist,file)
+    
+    return redirect(url_for('wishlist_page'))
+
+def load_wishlist():
+    global wishlist
+    try:
+        with open('wishlist.json', 'r') as file:
+            wishlist = json.load(file)
+    except FileNotFoundError:
+        wishlist = []
+
+def save_wishlist():
+    with open('wishlist.json', 'w') as file:
+        json.dump(wishlist, file)
+
+@app.route('/wishlist/remove/<int:item_index>', methods=["POST"])
+def remove_wishlist_item(item_index):
+    global wishlist
+
+    
+    if 0 <= item_index < len(wishlist):
+        del wishlist[item_index]
+
+    
+    save_wishlist()
+
+   
+    return redirect(url_for('wishlist_page'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080)
+

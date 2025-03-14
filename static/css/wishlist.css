@@ -1,0 +1,157 @@
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: "Chewy", serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.form-control {
+  font-size: 20px !important;
+  padding: 10px !important;
+  width: 100% !important;
+}
+
+.header-container {
+  display: flex;
+  color: black;
+  background-color: #ff6d6a;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 100px;
+}
+
+.col-sm-10 {
+  height: auto;
+}
+.col-sm-2 {
+  font-size: 50px;
+  margin: 10px;
+}
+
+.header-container h1 {
+  font-size: 64px;
+  font-family: "Chewy", serif;
+  color: white;
+  height: 100px;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5), -3px 3px 3px rgba(0, 0, 0, 0.5),
+    3px -3px 3px rgba(0, 0, 0, 0.5), -3px -3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 80vh;
+  flex-wrap: wrap;
+  padding: 20px;
+  flex: 1;
+  margin-bottom: 200px;
+}
+
+.left {
+  background-color: #ff6d6a;
+  height: auto;
+  border-radius: 20px;
+  align-items: top;
+  justify-content: left;
+}
+
+.right {
+  background-color: white;
+  overflow-y: aut0;
+}
+
+.left,
+.right {
+  flex: 1 1 45%;
+  font-family: "Chewy", serif;
+  font-size: 40px;
+  color: black;
+  margin: 20px;
+  height: 30rem;
+}
+.list-container {
+  background-color: black;
+  margin: 20px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+ul li {
+  color: white;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.nav_banner {
+  background-color: #ff6d6a;
+  position: relative;
+  padding: 10px;
+  z-index: 5;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 20px;
+  z-index: 5;
+}
+
+.nav-item {
+  font-size: 25px;
+  border: 1px solid white;
+  background-color: #ff6d6a;
+  border-radius: 20px;
+  margin: 5px 15px 5px 15px;
+  font-family: "Chewy", serif;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 150px;
+  min-width: 120px;
+  text-align: center;
+  z-index: 1;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #f9dce8;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 1), -1px -1px 3px rgba(0, 0, 0, 1),
+    1px -1px 2px rgba(0, 0, 0, 1), -1px 1px 2px rgba(0, 0, 0, 1);
+  transition-timing-function: ease-in;
+  transition: 1s;
+}
+.nav-item a:hover {
+  color: darkturquoise;
+  transform: rotate(-10deg);
+}
+.nav-item a:active {
+  color: darkturquoise;
+}
+
+.nav_banner h1 {
+  font-family: "Chewy", serif;
+  font-size: 100px;
+  padding: 20px;
+  text-align: center;
+}
+
+.btn {
+  margin: 5px;
+}

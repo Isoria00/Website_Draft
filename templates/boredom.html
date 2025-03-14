@@ -3,9 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/boredom.css') }}"
+    />
+    <title>Random Boredom Image</title>
+    <script>
+      function getRandomImage() {
+        fetch("/get_image")
+          .then((response) => response.json())
+          .then((data) => {
+            const imageUrl = "/static/" + data.image_url;
+            document.getElementById("random-image").src = imageUrl;
+          });
+      }
+    </script>
   </head>
   <body>
-    <h1>This is for Boredom</h1>
+    <div class="nav_banner">
+      <div id="collision-box"></div>
+      <div id="lottie-container"></div>
+
+      <h1>Your Cat Vibe Right Now!</h1>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('dateideas') }}">Date Ideas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('boredom')}}"
+            >Boredom Cureness</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('wishlist_page') }}">Wishlist</a>
+        </li>
+      </ul>
+    </div>
+    <div id="button_container">
+      <button onclick="getRandomImage()" id="button">Click Me!</button>
+    </div>
+
+    <div id="image-container">
+      <img id="random-image" src="" alt="" width="300" />
+    </div>
   </body>
 </html>

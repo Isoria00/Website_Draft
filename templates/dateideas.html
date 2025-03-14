@@ -3,9 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dateideas.css') }}"
+    />
+    <title>DateIdeas</title>
   </head>
   <body>
-    <h1>This is for Date Ideas</h1>
+    <div class="nav_banner">
+      <div id="collision-box"></div>
+      <div id="lottie-container"></div>
+
+      <h1>Date Ideas</h1>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('dateideas') }}">Date Ideas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('boredom')}}"
+            >Boredom Cureness</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('wishlist_page') }}">Wishlist</a>
+        </li>
+      </ul>
+    </div>
+
+    <form action="/generate-date-idea" method="POST">
+      <label for="dropdown">Choose a Category:</label>
+      <select name="options" id="dropdown">
+        <option value="0" {% if request.form['options'] == '0' %}selected{% endif %}>Outdoor Adventures</option>
+            <option value="1" {% if request.form['options'] == '1' %}selected{% endif %}>Indoor Activities</option>
+            <option value="2" {% if request.form['options'] == '2' %}selected{% endif %}>Romantic Experiences</option>
+            <option value="3" {% if request.form['options'] == '3' %}selected{% endif %}>Food and Drink</option>
+            <option value="4" {% if request.form['options'] == '4' %}selected{% endif %}>Fun and Playful</option>
+            <option value="5" {% if request.form['options'] == '5' %}selected{% endif %}>Cultural and Educational</option>
+      </select>
+      <button type="submit">Generate</button>
+    </form>
+
+    
+    {% if idea %}
+    <h2>Here's your date idea:</h2>
+    <p>{{ idea }}</p>
+    {% endif %}
   </body>
 </html>
