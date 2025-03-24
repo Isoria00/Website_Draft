@@ -13,6 +13,11 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/boredom.css') }}"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
     <title>Random Boredom Image</title>
     <script>
       function getRandomImage() {
@@ -37,11 +42,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('boredom')}}"
-            >Boredom Cureness</a
+            >Cat Vibe Calculator</a
           >
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('wishlist_page') }}">Wishlist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('dashboard')}}">Home</a>
         </li>
       </ul>
     </div>

@@ -34,10 +34,8 @@ body {
 .header-container h1 {
   font-size: 64px;
   font-family: "Chewy", serif;
-  color: white;
+  color: black;
   height: 100px;
-  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5), -3px 3px 3px rgba(0, 0, 0, 0.5),
-    3px -3px 3px rgba(0, 0, 0, 0.5), -3px -3px 3px rgba(0, 0, 0, 0.5);
 }
 
 .main-container {
